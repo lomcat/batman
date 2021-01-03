@@ -1,0 +1,18 @@
+archivesBaseName = 'batman-zoo'
+
+sourceSets {
+    main {
+        java.srcDirs = []
+        resources.srcDirs = []
+    }
+    test {
+        java.srcDirs = []
+        resources.srcDirs = []
+    }
+}
+
+configurations {
+}
+
+dependencies {
+}

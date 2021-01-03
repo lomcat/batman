@@ -1,0 +1,10 @@
+
+include 'batman-zoo'
+
+rootProject.name = 'batman'
+rootProject.children.each {project ->
+    project.buildFileName = "${project.name}.gradle"
+}
+include 'batman-zoo:ape'
+findProject(':batman-zoo:ape')?.name = 'ape'
+

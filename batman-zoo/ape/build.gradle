@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+}
+
+ext {
+    BINTRAY_NAME = 'batman-zoo-ape'
+    PUBLISHED_ARTIFACT_ID = 'batman-zoo-ape'
+    PROJECT_DESCRIPTION = 'batman standard tester'
+}

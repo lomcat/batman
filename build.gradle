@@ -1,0 +1,86 @@
+import org.gradle.api.internal.project.DefaultProject
+
+allprojects {
+    buildscript {
+        repositories {
+            maven { url "https://dl.bintray.com/lomcat/maven/" }
+            maven { url "https://dl.bintray.com/lomcat/maven-test/" }
+            maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+            jcenter()
+            mavenCentral()
+            maven { url "https://repo1.maven.org/maven2/" }
+            maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+            maven { url "https://repo.spring.io/libs-release/" }
+            maven { url "https://repo.spring.io/plugins-release/" }
+            maven { url "http://maven.icm.edu.pl/artifactory/repo/" }
+            maven { url "https://mirrors.huaweicloud.com/repository/maven/huaweicloudsdk/" }
+        }
+
+        dependencies {
+            classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        }
+
+        apply from: "${rootDir}/gradle/module-task-skippable.gradle"
+    }
+
+    repositories {
+        maven { url "https://dl.bintray.com/lomcat/maven/" }
+        maven { url "https://dl.bintray.com/lomcat/maven-test/" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        jcenter()
+        mavenCentral()
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://repo.spring.io/libs-release/" }
+        maven { url "https://repo.spring.io/plugins-release/" }
+        maven { url "http://maven.icm.edu.pl/artifactory/repo/" }
+        maven { url "https://mirrors.huaweicloud.com/repository/maven/huaweicloudsdk/" }
+    }
+
+    group 'com.lomcat.batman'
+    version = '0.0.1'
+
+    apply plugin: 'java-library'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 8
+    targetCompatibility = 8
+
+    compileJava {
+        options.encoding = "UTF-8"
+    }
+    compileTestJava {
+        options.encoding = "UTF-8"
+    }
+    javadoc {
+        options.encoding = "UTF-8"
+        options.memberLevel = JavadocMemberLevel.PROTECTED
+        options.author = true
+        options.header = project.name
+        options.use = true
+        options.addStringOption("Xdoclint:none", "-quiet")
+    }
+
+    configurations {
+//        developmentOnly
+//        runtimeClasspath {
+//            extendsFrom developmentOnly
+//        }
+    }
+
+    dependencies {
+        implementation group: 'org.jetbrains', name: 'annotations', version: '18.0.0'
+
+        testImplementation group: 'junit', name: 'junit', version: '4.12'
+    }
+
+    ext {
+
+        // ----- dependency definitions -----
+        slf4jApi = 'org.slf4j:slf4j-api:1.7.30'
+        typesafeConfig = 'com.typesafe:config:1.4.0'
+
+        apply from: "${rootDir}/gradle/publications.gradle"
+    }
+
+}
