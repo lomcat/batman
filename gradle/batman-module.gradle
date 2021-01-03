@@ -1,0 +1,21 @@
+apply from: "$rootDir/gradle/publications.gradle"
+
+jar {
+    manifest.attributes["Implementation-Title"] = 'Lomcat Batman ' + project.name.replace('batman-', '').substring(0, 1).toUpperCase() + project.name.replace('batman-', '').substring(1)
+    manifest.attributes["Implementation-Vendor"] = 'Lomcat Technology Co., Ltd.'
+    manifest.attributes["Implementation-Vendor-Id"] = 'com.lomcat.batman'
+    manifest.attributes["Implementation-Version"] = project.version
+    manifest.attributes["Implementation-URL"] = 'https://batman.lomcat.org/' + project.name
+    manifest.attributes["Automatic-Module-Name"] = project.name.replace('-', '.')  // for Jigsaw
+    manifest.attributes["Build-Jdk-Spec"] = project.sourceCompatibility
+    manifest.attributes["Build-Jdk"] = System.getProperty("java.version")
+    manifest.attributes["Built-By"] = 'Kweny'
+    manifest.attributes["Created-By"] = 'Gradle ' + gradle.gradleVersion
+
+    from("${rootDir}") {
+        include "LICENSE.txt"
+        include "NOTICE.txt"
+        into "META-INF"
+        expand(copyright: new Date().format("yyyy"), version: project.version)
+    }
+}

@@ -1,6 +1,8 @@
-import org.gradle.api.internal.project.DefaultProject
+ext {
+    moduleProjects = subprojects.findAll {it.name.startsWith('batman') }
+}
 
-allprojects {
+configure(allprojects) { project ->
     buildscript {
         repositories {
             maven { url "https://dl.bintray.com/lomcat/maven/" }
@@ -62,10 +64,6 @@ allprojects {
     }
 
     configurations {
-//        developmentOnly
-//        runtimeClasspath {
-//            extendsFrom developmentOnly
-//        }
     }
 
     dependencies {
@@ -74,13 +72,8 @@ allprojects {
         testImplementation group: 'junit', name: 'junit', version: '4.12'
     }
 
-    ext {
+}
 
-        // ----- dependency definitions -----
-        slf4jApi = 'org.slf4j:slf4j-api:1.7.30'
-        typesafeConfig = 'com.typesafe:config:1.4.0'
-
-        apply from: "${rootDir}/gradle/publications.gradle"
-    }
-
+configure(moduleProjects) { project ->
+    apply from: "${rootDir}/gradle/batman-module.gradle"
 }
