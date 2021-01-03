@@ -10,7 +10,7 @@
 
 `译意` 勤务兵
 
-`释义` `Ba`sic `T`ools `Man`ager 基础工具库经理
+`释义` **Ba**sic **T**ools **Man**ager 基础工具库经理
 
 ## TODO
 
