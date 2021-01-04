@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation project(':batman-aide')
 }
 
 ext {
