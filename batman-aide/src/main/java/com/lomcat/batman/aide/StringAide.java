@@ -259,6 +259,7 @@ public class StringAide {
      * StringAide.isAllBlank(" ", "bar")       = false
      * StringAide.isAllBlank("foo", "bar")     = false
      * StringAide.isAllBlank(new String[] {})  = true
+     * StringAide.isAllBlank("", "", " ")  = true
      * </pre>
      *
      * @param inputs 要检查的字符序列数组，可以为 {@code null} 或 空数组
@@ -597,6 +598,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列 {@link #isNotEmpty} 且仅包含 Unicode 字母时返回 {@code true}
+     * @see Character#isLetter(char)
      */
     public static boolean isAlpha(final CharSequence input) {
         final int length = length(input);
@@ -628,6 +630,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列 {@link #isNotEmpty} 且仅包含 Unicode 字母和数字时返回 {@code true}
+     * @see Character#isLetterOrDigit(char)
      */
     public static boolean isAlphanumeric(final CharSequence input) {
         final int length = length(input);
@@ -661,6 +664,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列不为 {@code null} 且仅包含 Unicode 字母和空格时返回 {@code true}
+     * @see Character#isLetter(char)
      */
     public static boolean isAlphaSpace(final CharSequence input) {
         if (input == null) {
@@ -697,6 +701,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列不为 {@code null} 且仅包含 Unicode 字母和空白时返回 {@code true}
+     * @see Character#isLetter(char)
      */
     public static boolean isAlphaWhitespace(final CharSequence input) {
         if (input == null) {
@@ -729,6 +734,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列不为 {@code null} 且仅包含 Unicode 字母、数字、空格（{@code ' '}）时返回 {@code true}
+     * @see Character#isLetterOrDigit(char)
      */
     public static boolean isAlphanumericSpace(final CharSequence input) {
         if (input == null) {
@@ -769,6 +775,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列不为 {@code null} 且仅包含 Unicode 数字时返回 {@code true}
+     * @see Character#isDigit(char)
      */
     public static boolean isNumeric(final CharSequence input) {
         final int length = length(input);
@@ -805,6 +812,7 @@ public class StringAide {
      *
      * @param input 要检查的字符序列，可以为 {@code null}
      * @return 当字符序列不为 {@code null} 且仅包含 Unicode 数字和空格时返回 {@code true}
+     * @see Character#isDigit(char)
      */
     public static boolean isNumericSpace(final CharSequence input) {
         if (input == null) {
@@ -830,17 +838,17 @@ public class StringAide {
      * 若指定字符序列为 空（{@code ""}）将返回 {@code true}。</p>
      *
      * <pre>
-     * StringAide.isNumericSpace(null)   = false
-     * StringAide.isNumericSpace("")     = true
-     * StringAide.isNumericSpace("  ")   = true
-     * StringAide.isNumericSpace("123")  = true
-     * StringAide.isNumericSpace("12\n3")  = true
-     * StringAide.isNumericSpace("12 3") = true
-     * StringAide.isNumericSpace("\u0967\u0968\u0969")  = true
-     * StringAide.isNumericSpace("\u0967\u0968 \u0969")  = true
-     * StringAide.isNumericSpace("ab2c") = false
-     * StringAide.isNumericSpace("12-3") = false
-     * StringAide.isNumericSpace("12.3") = false
+     * StringAide.isNumericWhitespace(null)   = false
+     * StringAide.isNumericWhitespace("")     = true
+     * StringAide.isNumericWhitespace("  ")   = true
+     * StringAide.isNumericWhitespace("123")  = true
+     * StringAide.isNumericWhitespace("12\n3")  = true
+     * StringAide.isNumericWhitespace("12 3") = true
+     * StringAide.isNumericWhitespace("\u0967\u0968\u0969")  = true
+     * StringAide.isNumericWhitespace("\u0967\u0968 \u0969")  = true
+     * StringAide.isNumericWhitespace("ab2c") = false
+     * StringAide.isNumericWhitespace("12-3") = false
+     * StringAide.isNumericWhitespace("12.3") = false
      * </pre>
      *
      * @param input 要检查的字符序列，可以为 {@code null}
