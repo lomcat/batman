@@ -2,24 +2,15 @@ ext {
     moduleProjects = subprojects.findAll {it.name.startsWith('batman') }
 }
 
+group 'com.lomcat.batman'
+version = '0.0.1'
+
 configure(allprojects) { project ->
     buildscript {
         repositories {
             maven { url "https://dl.bintray.com/lomcat/maven/" }
             maven { url "https://dl.bintray.com/lomcat/maven-test/" }
-            maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-            jcenter()
             mavenCentral()
-            maven { url "https://repo1.maven.org/maven2/" }
-            maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-            maven { url "https://repo.spring.io/libs-release/" }
-            maven { url "https://repo.spring.io/plugins-release/" }
-            maven { url "http://maven.icm.edu.pl/artifactory/repo/" }
-            maven { url "https://mirrors.huaweicloud.com/repository/maven/huaweicloudsdk/" }
-        }
-
-        dependencies {
-            classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
         }
 
         apply from: "${rootDir}/gradle/module-task-skippable.gradle"
@@ -28,19 +19,11 @@ configure(allprojects) { project ->
     repositories {
         maven { url "https://dl.bintray.com/lomcat/maven/" }
         maven { url "https://dl.bintray.com/lomcat/maven-test/" }
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        jcenter()
         mavenCentral()
-        maven { url "https://repo1.maven.org/maven2/" }
-        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-        maven { url "https://repo.spring.io/libs-release/" }
-        maven { url "https://repo.spring.io/plugins-release/" }
-        maven { url "http://maven.icm.edu.pl/artifactory/repo/" }
-        maven { url "https://mirrors.huaweicloud.com/repository/maven/huaweicloudsdk/" }
     }
 
-    group 'com.lomcat.batman'
-    version = '0.0.1'
+    group rootProject.group
+    version rootProject.version
 
     apply plugin: 'java-library'
     apply plugin: 'idea'
@@ -67,7 +50,7 @@ configure(allprojects) { project ->
     }
 
     dependencies {
-        implementation group: 'org.jetbrains', name: 'annotations', version: '18.0.0'
+        implementation 'org.jetbrains:annotations:20.1.0'
 
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
@@ -81,4 +64,17 @@ configure(allprojects) { project ->
 
 configure(moduleProjects) { project ->
     apply from: "${rootDir}/gradle/batman-module.gradle"
+}
+
+configure(rootProject) { project ->
+    sourceSets {
+        main {
+            java.srcDirs = []
+            resources.srcDirs = []
+        }
+        test {
+            java.srcDirs = []
+            resources.srcDirs = []
+        }
+    }
 }
